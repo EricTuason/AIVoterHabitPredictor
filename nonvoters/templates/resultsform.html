@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voter Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            color: white;
+            background-color: #262829;
+        }
+    
+        h1, h2 {
+            margin: 0;
+            color: rgb(155, 154, 244);
+        }
+    
+        h2 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+    
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    
+        .abstract {
+            margin-bottom: 30px;
+        }
+    
+        .confusion-matrix img {
+            max-width: 100%;
+            display: block;
+            margin-top: 20px;
+        }
+    
+        .model-stats div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Output</h1>
+        <div class="output">
+            <div>Model Output: <strong>{{ model_output }}</strong></div>
+        </div>
+    </div>
+</body>
+</html>

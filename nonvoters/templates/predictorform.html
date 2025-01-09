@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voter Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            color: white;
+            background-color: #262829;
+        }
+    
+        h1, h2 {
+            margin: 0;
+            color: rgb(155, 154, 244);
+        }
+    
+        h2 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+    
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    
+        .abstract {
+            margin-bottom: 30px;
+        }
+    
+        .confusion-matrix img {
+            max-width: 100%;
+            display: block;
+            margin-top: 20px;
+        }
+    
+        .model-stats div {
+            margin-bottom: 10px;
+        }
+
+        .single-line-select {
+            display: inline-block;
+            margin-right: 10px; /* Adjust the value to set the desired spacing */
+            background-color: #262829;
+            color: white;
+        }
+        
+        input[type="submit"] {
+            background-color: #262829;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voting Habits Predictor</h1>
+
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <div>In our final project, we analyzed a large dataset with 4 independent variables: education, race, gender, and income.
+            Our dependent variable was voting habits with 3 categories: rarely/never, sporadic, and always.
+            We tried out SVM, random forest, decision tree, and MLP classifier models with grid/random/Bayesian search for hyperparameter tuning.
+            We found that a decision tree classifier with grid search found the model with the best accuracy. We did notice that "sporadic"
+            was heavily predicted in all our models, even after tuning label weights and oversampling data.</div>
+        </div>
+
+        <div class="hyperparameter-tuning">
+            <h2>Hyperparameter Tuning Results</h2>
+            <div>Best model parameters: <strong>{{ best_model }}</strong></div>
+            <div>Model accuracy: <strong>{{ predicted }}</strong></div>
+        </div>
+
+        <div class="confusion-matrix">
+            <h2>Confusion Matrix</h2>
+            <img src="data:image/png;base64,{{buffer_encode}}" alt="Confusion Matrix">
+        </div>
+
+        <div class="model-stats">
+            <h2>Model Statistics:</h2>
+            <div>Accuracy: <strong>{{ accuracy }}</strong></div>
+            <div>Variance: <strong>{{ variance }}</strong></div>
+            <div>MSE: <strong>{{ mse }}</strong></div>
+            <div>Precision: <strong>{{ precision }}</strong></div>
+            <div>Recall: <strong>{{ recall }}</strong></div>
+        </div>
+
+        <div class="model-testing">
+            <h2>Try out our model:</h2>
+            <form action="http://localhost:9999/results" method="POST">
+                <p>
+                    Education:
+                    <select name="education" class="single-line-select">
+                        <option value="High school or less">High school or less</option>
+                        <option value="Some college">Some college</option>
+                        <option value="College">College</option>
+                    </select>
+                    Race:
+                    <select name="race" class="single-line-select">
+                        <option value="white">White</option>
+                        <option value="black">Black</option>
+                        <option value="hispanic">Hispanic</option>
+                        <option value="other">Other</option>
+                    </select>
+                    Gender:
+                    <select name="gender" class="single-line-select">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    Income:
+                    <select name="income" class="single-line-select">
+                        <option value="Less than $40k">Less than $40k</option>
+                        <option value="$40-75k">$40-75k</option>
+                        <option value="$75-125k">$75-125k</option>
+                        <option value="$125k or more">$125k or more</option>
+                    </select>
+                </p>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
